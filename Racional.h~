@@ -1,0 +1,15 @@
+#pragma once
+
+class Racional{
+	int num, den;
+public:
+	Racional(int=0, int=1);
+	string toString();
+	Racional operator-();
+	Racional operator+();
+	Racional operator*();
+	Racional operator/();
+	void simplificar();
+	friend ostream& operator<<(ostream&, Complex&);
+	friend istream& operator>>(istream&, Complex&);
+};
