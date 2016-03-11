@@ -1,5 +1,13 @@
 #include <iostream>
-#include "racional.h"
+#include "Racional.h"
+#include <string>
+#include<sstream>
+
+using std::stringstream;
+using std::cout;
+using std::string;
+using std::ostream;
+using std::istream;
 
 Racional::Racional(int num, int den){
 	if(den == 0){
@@ -15,11 +23,13 @@ Racional::Racional(int num, int den){
 	
 }
 string Racional::toString(){
+	stringstream ss;
 	if(den == 1){
-		cout << num;
+		ss << num;
 	}else{
-		cout << num << "/" << den;
+		ss << num << "/" << den;
 	}
+	return ss.str();
 }
 Racional Racional::operator-(Racional r){
 	if(den == r.den){
@@ -42,29 +52,29 @@ Racional Racional::operator/(Racional r){
 	return (num*r.den,r.num*den);
 }
 void Racional::simplificar(){
-	if(den==1){
+	if(den == 1){
 		
 	}else{
-		int b=2;
-		while(b<=num){
-			if(den%b==0 && num%b==0){
-				den=den/b;
-				num=num/b;
+		int b = 2;
+		while(b <= num){
+			if(den % b == 0 && num % b == 0){
+				den = den / b;
+				num = num / b;
 			}else{
 				b++;
 			}
 		}
 	}
 }
-ostream& operator<<(ostream& output, Racional r){
-	if(den == 1){
-		output << num;
+ostream& operator<<(ostream& output, Racional& r){
+	if(r.den == 1){
+		output << r.num;
 	}else{
-		output << num << "/" << den;
+		output << r.num << "/" << r.den;
 	}
 	return output;
 }
-istream& operator>>(istream& input, Racional r){
+istream& operator>>(istream& input, Racional& r){
 	input >> r.num >> r.den;
 	return input;
 }

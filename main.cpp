@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include "Racional.h"
 
 using std::string;
 using std::vector;
@@ -27,15 +28,15 @@ int main(int argc, char*argv[]){
 		cout << "0-Salir\n1-Crear Racionales\n2-Sumar Racionales\n3-restar Racionales\n4-Multiplicar Racionales\n5-Dividir Racionales\n6-Historial" << endl;
 		cin >> menu;
 		if(menu == 1){
-			nuevo();
+			nuevo(numeros);
 			cout << "Se ha agregado con exito!!" << endl;
 		}else if(menu == 2){
 			while(valida){
 				imprimir(numeros);
 				cout << "Escoja la posicion de un Racional: ";
-				cint >> choice1;
+				cin >> choice1;
 				cout << "Escoja la posicion de otro Racional: ";
-				cint >> choice2;
+				cin >> choice2;
 				if((choice1 > -1 && choice1 < numeros.size()) && (choice2 > -1 && choice2 < numeros.size()))
 					valida = false;
 			}
@@ -46,9 +47,9 @@ int main(int argc, char*argv[]){
 			while(valida){
 				imprimir(numeros);
 				cout << "Escoja la posicion de un Racional: ";
-				cint >> choice1;
+				cin >> choice1;
 				cout << "Escoja la posicion de otro Racional: ";
-				cint >> choice2;
+				cin >> choice2;
 				if((choice1 > -1 && choice1 < numeros.size()) && (choice2 > -1 && choice2 < numeros.size()))
 					valida = false;
 			}
@@ -59,9 +60,9 @@ int main(int argc, char*argv[]){
 			while(valida){
 				imprimir(numeros);
 				cout << "Escoja la posicion de un Racional: ";
-				cint >> choice1;
+				cin >> choice1;
 				cout << "Escoja la posicion de otro Racional: ";
-				cint >> choice2;
+				cin >> choice2;
 				if((choice1 > -1 && choice1 < numeros.size()) && (choice2 > -1 && choice2 < numeros.size()))
 					valida = false;
 			}
@@ -72,9 +73,9 @@ int main(int argc, char*argv[]){
 			while(valida){
 				imprimir(numeros);
 				cout << "Escoja la posicion de un Racional: ";
-				cint >> choice1;
+				cin >> choice1;
 				cout << "Escoja la posicion de otro Racional: ";
-				cint >> choice2;
+				cin >> choice2;
 				if((choice1 > -1 && choice1 < numeros.size()) && (choice2 > -1 && choice2 < numeros.size()))
 					valida = false;
 			}
@@ -94,31 +95,35 @@ void historial(vector<string>& operaciones){
 }
 Racional dividir(vector<Racional>& numeros,int choice1,int choice2,vector<string>& operaciones){
 	Racional resp = numeros[choice1] / numeros[choice2];
-	string operacion = numeros[choice1].toString() + " / " + numeros[choice2].toString() " = " + resp.toString();
+	resp.simplificar();
+	string operacion = numeros[choice1].toString() + " / " + numeros[choice2].toString() + " = " + resp.toString();
 	operaciones.push_back(operacion);
 	return resp;
 }
 Racional multiplicar(vector<Racional>& numeros,int choice1,int choice2,vector<string>& operaciones){
 	Racional resp = numeros[choice1] * numeros[choice2];
-	string operacion = numeros[choice1].toString() + " * " + numeros[choice2].toString() " = " + resp.toString();
+	resp.simplificar();
+	string operacion = numeros[choice1].toString() + " * " + numeros[choice2].toString() + " = " + resp.toString();
 	operaciones.push_back(operacion);
 	return resp;
 }
 Racional restar(vector<Racional>& numeros,int choice1,int choice2,vector<string>& operaciones){
 	Racional resp = numeros[choice1] - numeros[choice2];
-	string operacion = numeros[choice1].toString() + " - " + numeros[choice2].toString() " = " + resp.toString();
+	resp.simplificar();
+	string operacion = numeros[choice1].toString() + " - " + numeros[choice2].toString() + " = " + resp.toString();
 	operaciones.push_back(operacion);
 	return resp;
 }
 Racional sumar(vector<Racional>& numeros,int choice1,int choice2,vector<string>& operaciones){
 	Racional resp = numeros[choice1] + numeros[choice2];
-	string operacion = numeros[choice1].toString() + " + " + numeros[choice2].toString() " = " + resp.toString();
+	resp.simplificar();
+	string operacion = numeros[choice1].toString() + " + " + numeros[choice2].toString() + " = " + resp.toString();
 	operaciones.push_back(operacion);
 	return resp;
 }
 void imprimir(vector<Racional>& numeros){
 	for(int i = 0; i < numeros.size(); i++){
-		cout << "Posicion: " << i << numeros[i].toString() << endl;
+		cout << "Posicion: " << i << " " << numeros[i].toString() << endl;
 	}
 }
 void nuevo(vector<Racional>& numeros){
@@ -127,5 +132,7 @@ void nuevo(vector<Racional>& numeros){
 	cin >> num;
 	cout << "Ingrese el denominador: ";
 	cin >> den;
-	numeros.push_back(new Racional(num,den));
+	Racional neww(num,den);
+	neww.simplificar();
+	numeros.push_back(neww);
 }
