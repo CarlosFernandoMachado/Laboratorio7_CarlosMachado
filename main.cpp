@@ -25,7 +25,7 @@ int main(int argc, char*argv[]){
 	vector<string> operaciones;
 	int menu = 1;
 	while(menu){
-		cout << "0-Salir\n1-Crear Racionales\n2-Sumar Racionales\n3-restar Racionales\n4-Multiplicar Racionales\n5-Dividir Racionales\n6-Historial" << endl;
+		cout << "\n0-Salir\n1-Crear Racionales\n2-Sumar Racionales\n3-restar Racionales\n4-Multiplicar Racionales\n5-Dividir Racionales\n6-Historial" << endl;
 		cin >> menu;
 		if(menu == 1){
 			nuevo(numeros);

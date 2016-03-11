@@ -33,23 +33,30 @@ string Racional::toString(){
 }
 Racional Racional::operator-(Racional r){
 	if(den == r.den){
-		return (num-r.num,den);
+		Racional retval(num-r.num,den);
+		return retval;
 	}else{
-		return ((num*r.den)-(r.num*den),den*r.den);
+		Racional retval((num*r.den)-(r.num*den),den*r.den);
+		return retval;
 	}
 }
 Racional Racional::operator+(Racional r){
 	if(den == r.den){
-		return (num+r.num,den);
-	}else{
-		return ((num*r.den)+(r.num*den),den*r.den);
+		Racional retval(num+r.num,den);
+		return retval;
+	}
+	else{
+		Racional retval((num*r.den)+(r.num*den),den*r.den);
+		return retval;
 	}
 }
 Racional Racional::operator*(Racional r){
-	return (num*r.num,den*r.den);
+	Racional retval(num*r.num,den*r.den);
+	return retval;
 }
 Racional Racional::operator/(Racional r){
-	return (num*r.den,r.num*den);
+	Racional retval(num*r.den,r.num*den);	
+	return retval;
 }
 void Racional::simplificar(){
 	if(den == 1){
